@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block main %}
-    <table>
+    <table class="table table-striped table-bordered">
     {% for expense in expenses %}
     <tr>
         <td><a href="/expense/edit/{{ expense.id }}">Edit</a></td>

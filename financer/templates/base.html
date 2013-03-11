@@ -6,9 +6,25 @@
     {% block head %}{% endblock head %}
 </head>
 <body>
-<a href="/">Home</a>
+<div class="row">
+    <div class="span12">
+<ul id="taskmenu" class="nav nav-tabs">
+    <li><a href="/"><i class="icon-ok-circle"></i>Home</a></li>
+    <li><a href="/cashflow/entry/list">List Entrys</a></li>
+    <li><a href="/cashflow/entry/create">Add New Entry</a></li>
+    <li><a href="/cashflow/entry/import">Import Entrys</a></li>
+    <li><a href="/cashflow/entry/create">Enter new Income</a></li>
+    <li><a href="/cashflow/report">CashFlow Report</a></li>
+</ul>
+    </div>
+</div>
+<div class="row">
+<div class="span9">
 {% block main %}
 {% endblock main %}
+</div>
+<div class="span3"></div>
+</div>
 <script src="{{ STATIC_URL }}js/jquery-1.9.1.min.js"></script>
 <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
 </body>

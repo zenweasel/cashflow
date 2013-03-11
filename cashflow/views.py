@@ -53,7 +53,7 @@ class EntryCreateView(View):
             ex.reference_number = form.cleaned_data['reference_number']
             ex.save()
 
-            return TemplateResponse(request, self.get_template_name(), {"form": form})
+            return TemplateResponse(request, self.get_template_name(), {"form": EntryForm(), 'success': True})
         else:
             return TemplateResponse(request, self.get_template_name(),
                                 self.get_context_data(form=form))
