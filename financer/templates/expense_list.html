@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block main %}
+    <table>
+    {% for expense in expenses %}
+    <tr>
+        <td><a href="/expense/edit/{{ expense.id }}">Edit</a></td>
+        <td><a href="/expense/detail/{{ expense.id }}">Detail</a></td>
+        <td>{{ expense.incurred_date|date:"m/d/y" }}</td>
+        <td>{{ expense.name }}</td>
+        <td>{{ expense.amount }}</td>
+    </tr>
+    {% endfor %}
+    </table>
+{% endblock main %}
