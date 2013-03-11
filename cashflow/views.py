@@ -1,13 +1,12 @@
 from django.shortcuts import get_object_or_404
 from django.template.response import TemplateResponse
 from django.views.generic import View
-from cashflow.forms import ExpenseForm
-from models import Expense, Income
-import logging
+from cashflow.forms import EntryForm
+from models import Entry
 
 
-class ExpenseListView(View):
-    """ List of Expenses
+class EntryListView(View):
+    """ List of Entrys
     """
 
     def get(self, request, *args, **kwargs):
@@ -27,12 +26,12 @@ class ExpenseListView(View):
 
     def get_object(self):
         """Returns the BlogPost instance that the view displays"""
-        expenses = Expense.objects.all()
+        expenses = Entry.objects.all()
         return expenses
 
 
-class ExpenseCreateView(View):
-    """Displays the details of an Expense"""
+class EntryCreateView(View):
+    """Displays the details of an Entry"""
 
     def get(self, request, *args, **kwargs):
         self.kwargs = kwargs
@@ -40,34 +39,44 @@ class ExpenseCreateView(View):
                                 self.get_context_data())
 
     def post(self, request, *args, **kwargs):
-        form = ExpenseForm(request.POST)
+        form = EntryForm(request.POST)
         if form.is_valid():
-            ex = Expense()
+            ex = Entry()
             ex.amount = form.cleaned_data['amount']
             ex.name = form.cleaned_data['name']
             ex.description = form.cleaned_data['description']
             ex.incurred_date = form.cleaned_data['incurred_date']
             ex.category = form.cleaned_data['category']
+            ex.recurring = False
+            ex.recurrance_type = form.cleaned_data['recurring_type']
+            ex.debit_credit = form.cleaned_data['debit_credit']
+            ex.reference_number = form.cleaned_data['reference_number']
             ex.save()
 
             return TemplateResponse(request, self.get_template_name(), {"form": form})
         else:
             return TemplateResponse(request, self.get_template_name(),
-                                self.get_context_data())
+                                self.get_context_data(form=form))
 
     def get_template_name(self):
         """Returns the name of the template we should render"""
         return "expense_create.html"
 
-    def get_context_data(self):
+    def get_context_data(self, form=None):
         """Returns the data passed to the template"""
-        return {
-            "form": ExpenseForm(),
-            }
+        if form is not None:
+            return {
+                "form": form,
+                }
+        else:
+
+            return {
+                "form": EntryForm(),
+                }
 
 
-class ExpenseDetailView(View):
-    """Displays the details of an Expense"""
+class EntryDetailView(View):
+    """Displays the details of an Entry"""
 
     def get(self, request, *args, **kwargs):
         self.kwargs = kwargs
@@ -86,11 +95,11 @@ class ExpenseDetailView(View):
 
     def get_object(self):
         """Returns the BlogPost instance that the view displays"""
-        return get_object_or_404(Expense, pk=self.kwargs.get("pk"))
+        return get_object_or_404(Entry, pk=self.kwargs.get("pk"))
 
 
-class ExpenseImportView(View):
-    """Import Expenses from Bank Statements"""
+class EntryImportView(View):
+    """Import Entrys from Bank Statements"""
 
     def get(self, request, *args, **kwargs):
         self.kwargs = kwargs
@@ -109,4 +118,4 @@ class ExpenseImportView(View):
 
     def get_object(self):
         """Returns the BlogPost instance that the view displays"""
-        return get_object_or_404(Expense, pk=self.kwargs.get("pk"))
+        return get_object_or_404(Entry, pk=self.kwargs.get("pk"))

@@ -149,3 +149,5 @@ LOGGING = {
         },
     }
 }
+
+from primer.settings import *

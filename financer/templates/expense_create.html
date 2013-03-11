@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block main %}
-    <form action="/cashflow/expense/create" method="post">{% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Submit" />
-    </form>
+
+        {% load crispy_forms_tags %}
+        {% crispy form form.helper %}
+
 {% endblock main %}

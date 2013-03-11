@@ -1,11 +1,11 @@
 from django.conf.urls import patterns, url
-from views import ExpenseDetailView, ExpenseImportView, ExpenseListView, ExpenseCreateView
+from views import EntryDetailView, EntryImportView, EntryListView, EntryCreateView
 
 
 urlpatterns = patterns('',
 
-                       url(r'expense/list', ExpenseListView.as_view()),
-                       url(r'expense/detail/$', ExpenseDetailView.as_view()),
-                       url(r'expense/import$', ExpenseImportView.as_view()),
-                       url(r'expense/create$', ExpenseCreateView.as_view()),
+                       url(r'entry/list', EntryListView.as_view()),
+                       url(r'entry/detail/$', EntryDetailView.as_view()),
+                       url(r'entry/import$', EntryImportView.as_view()),
+                       url(r'entry/create$', EntryCreateView.as_view()),
 )
