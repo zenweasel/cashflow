@@ -1,6 +1,7 @@
 # Django settings for financer project.
 import os
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
+UPLOAD_ROOT = os.path.join(PROJECT_ROOT, 'uploads')
 
 
 DEBUG = True
@@ -31,7 +32,7 @@ ALLOWED_HOSTS = []
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
 # In a Windows environment this must be set to your system time zone.
-TIME_ZONE = 'America/Los_Angeles'
+TIME_ZONE = 'US/Pacific'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -41,18 +42,18 @@ SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
-USE_I18N = True
+USE_I18N = False
 
 # If you set this to False, Django will not format dates, numbers and
 # calendars according to the current locale.
 USE_L10N = True
 
 # If you set this to False, Django will not use timezone-aware datetimes.
-USE_TZ = True
+USE_TZ = False
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = UPLOAD_ROOT
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -122,6 +123,7 @@ INSTALLED_APPS = (
     'django_extensions',
     'debug_toolbar',
     'crispy_forms',
+    'smarter',
     'cashflow',
 )
 
@@ -150,4 +152,19 @@ LOGGING = {
     }
 }
 
-from primer.settings import *
+DEBUG_TOOLBAR_PANELS = (
+    'debug_toolbar.panels.version.VersionDebugPanel',
+    'debug_toolbar.panels.timer.TimerDebugPanel',
+    'debug_toolbar.panels.settings_vars.SettingsVarsDebugPanel',
+    'debug_toolbar.panels.headers.HeaderDebugPanel',
+    'debug_toolbar.panels.request_vars.RequestVarsDebugPanel',
+    'debug_toolbar.panels.template.TemplateDebugPanel',
+    'debug_toolbar.panels.sql.SQLDebugPanel',
+    'debug_toolbar.panels.signals.SignalDebugPanel',
+    'debug_toolbar.panels.logger.LoggingPanel',
+)
+
+DEBUG_TOOLBAR_CONFIG = {
+    'INTERCEPT_REDIRECTS': False
+}
+

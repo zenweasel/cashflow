@@ -22,10 +22,11 @@ class EntryListView(View):
         """Returns the data passed to the template"""
         return {
             "expenses": self.get_object(),
-            }
+            "title": "List Expenses",
+        }
 
     def get_object(self):
-        """Returns the BlogPost instance that the view displays"""
+        """Returns the Entry instance that the view displays"""
         expenses = Entry.objects.all()
         return expenses
 
@@ -56,7 +57,7 @@ class EntryCreateView(View):
             return TemplateResponse(request, self.get_template_name(), {"form": EntryForm(), 'success': True})
         else:
             return TemplateResponse(request, self.get_template_name(),
-                                self.get_context_data(form=form))
+                                    self.get_context_data(form=form))
 
     def get_template_name(self):
         """Returns the name of the template we should render"""
@@ -67,15 +68,17 @@ class EntryCreateView(View):
         if form is not None:
             return {
                 "form": form,
-                }
+                "title": "Add/Change Cashflow Entry"
+            }
         else:
 
             return {
                 "form": EntryForm(),
-                }
+                "title": "Add/Change Cashflow Entry"
+            }
 
 
-class EntryDetailView(View):
+class EntryEditView(View):
     """Displays the details of an Entry"""
 
     def get(self, request, *args, **kwargs):
@@ -83,19 +86,32 @@ class EntryDetailView(View):
         return TemplateResponse(request, self.get_template_name(),
                                 self.get_context_data())
 
+    def post(self, request, *args, **kwargs):
+        self.kwargs = kwargs
+        return TemplateResponse(request, self.get_template_name(),
+                                self.get_context_data(request))
+
     def get_template_name(self):
         """Returns the name of the template we should render"""
-        return "expense_detail.html"
+        return "expense_edit.html"
 
-    def get_context_data(self):
+    def get_context_data(self, request=None):
         """Returns the data passed to the template"""
+        title = self.kwargs.get('title', "Entry")
+        ex = self.get_object()
+        form = EntryForm()
+        print(form.data)
+        form.bind(ex)
+
         return {
-            "expense": self.get_object(),
-            }
+            "form": form,
+            "title": title,
+            "ex": ex,
+        }
 
     def get_object(self):
         """Returns the BlogPost instance that the view displays"""
-        return get_object_or_404(Entry, pk=self.kwargs.get("pk"))
+        return get_object_or_404(Entry, pk=self.kwargs.get("entry_id"))
 
 
 class EntryImportView(View):
@@ -108,14 +124,14 @@ class EntryImportView(View):
 
     def get_template_name(self):
         """Returns the name of the template we should render"""
-        return "blog/blogpost_detail.html"
+        return "expense_import.html"
 
     def get_context_data(self):
         """Returns the data passed to the template"""
         return {
             "blogpost": self.get_object(),
-            }
+        }
 
     def get_object(self):
         """Returns the BlogPost instance that the view displays"""
-        return get_object_or_404(Entry, pk=self.kwargs.get("pk"))
+        return get_object_or_404(Entry, pk=self.kwargs.get(""))
