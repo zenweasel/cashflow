@@ -5,15 +5,12 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Div, HTML
 from datetime import datetime
 
-entry_type_choices = ((1, "Credit"), (2, "Debit"))
-
 
 class EntryForm(forms.Form):
     """
     Main Entry form for edit/create
     """
-    entry_id = forms.HiddenInput()
-    debit_credit = forms.ChoiceField(choices=entry_type_choices)
+    entry_id = forms.CharField(required=True, widget=forms.HiddenInput)
     incurred_date = forms.DateTimeField(initial=datetime.now(), widget=DateTimeInput)
     name = forms.CharField(max_length=100)
     reference_number = forms.CharField(required=False)
@@ -23,6 +20,7 @@ class EntryForm(forms.Form):
     recurring = forms.BooleanField(initial=False, required=False)
     recurring_type = forms.ModelChoiceField(queryset=RecurranceType.objects.all(), required=False)
     entry_form_layout = Layout(
+        'entry_id',
         Div('incurred_date', css_class="span2"),
         Div('name', css_class="span2 offset1"),
         Div('amount', css_class="span1 offset1"),
@@ -31,7 +29,6 @@ class EntryForm(forms.Form):
         Div('reference_number', css_class='span2 offset1'),
         Div('description', css_class='span2 offset1'),
         HTML('<div class="row"></div>'),
-        Div('debit_credit', css_class='span2 extended'),
         Div('recurring', css_class='span2 offset1 extended'),
         Div('recurring_type', css_class='span2 offset1 extended'),
         HTML('<div class="row"></div>'),
@@ -51,11 +48,10 @@ class EntryForm(forms.Form):
             self.helper.form_method = 'post'
         ex = kwargs.get('entry', None)
         if ex is not None:
-            self.entry_id = ex.id
+            self.entry_id = ex.entry_id
             self.amount = ex.amount
             self.category = ex.category
             self.name = ex.name
-            self.debit_credit = ex.debit_credit
             self.incurred_date = ex.incurred_date
             self.reference_number = ex.reference_number
             self.description = ex.description

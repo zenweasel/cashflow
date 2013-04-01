@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet">
     <title>{{ title }}</title>
+    <link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet">
+    <script src="{{ STATIC_URL }}js/jquery-1.9.1.min.js"></script>
+    <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
     {% block head %}{% endblock head %}
+    {% block extra_css %}{% endblock extra_css %}
+    {% block extra_js %}{% endblock extra_js %}
 </head>
-<body>
+<body class="{{ bodytag }}">
 <div class="row">
     <div class="span12">
 <ul id="taskmenu" class="nav nav-tabs">
@@ -25,10 +29,7 @@
     </div>
     <div class="span1"></div>
 </div>
-<script src="{{ STATIC_URL }}js/jquery-1.9.1.min.js"></script>
-<script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
-<script>
 
-</script>
+
 </body>
 </html>

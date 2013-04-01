@@ -1,0 +1,167 @@
+[
+
+{
+    "pk": 1, 
+    "model": "cashflow.entrycategory", 
+    "fields": {
+        "debit_credit": 2, 
+        "name": "Groceries"
+    }
+},
+{
+    "pk": 2, 
+    "model": "cashflow.entrycategory", 
+    "fields": {
+        "debit_credit": 2, 
+        "name": "Utilities"
+    }
+},
+{
+    "pk": 3, 
+    "model": "cashflow.entrycategory", 
+    "fields": {
+        "debit_credit": 2, 
+        "name": "Service Subscriptions"
+    }
+},
+{
+    "pk": 4, 
+    "model": "cashflow.entrycategory", 
+    "fields": {
+        "debit_credit": 2, 
+        "name": "Books"
+    }
+},
+{
+    "pk": 5, 
+    "model": "cashflow.entrycategory", 
+    "fields": {
+        "debit_credit": 2, 
+        "name": "Cell Phone"
+    }
+},
+{
+    "pk": 6, 
+    "model": "cashflow.entrycategory", 
+    "fields": {
+        "debit_credit": 2, 
+        "name": "Auto Insurance"
+    }
+},
+{
+    "pk": 7, 
+    "model": "cashflow.entrycategory", 
+    "fields": {
+        "debit_credit": 2, 
+        "name": "Gasoline"
+    }
+},
+{
+    "pk": 8, 
+    "model": "cashflow.entrycategory", 
+    "fields": {
+        "debit_credit": 2, 
+        "name": "Medical"
+    }
+},
+{
+    "pk": 9, 
+    "model": "cashflow.entrycategory", 
+    "fields": {
+        "debit_credit": 2, 
+        "name": "Household"
+    }
+},
+{
+    "pk": 10, 
+    "model": "cashflow.entrycategory", 
+    "fields": {
+        "debit_credit": 2, 
+        "name": "Pet Related"
+    }
+},
+{
+    "pk": 11, 
+    "model": "cashflow.entrycategory", 
+    "fields": {
+        "debit_credit": 2, 
+        "name": "Entertainment"
+    }
+},
+{
+    "pk": 12, 
+    "model": "cashflow.entrycategory", 
+    "fields": {
+        "debit_credit": 2, 
+        "name": "Shopping"
+    }
+},
+{
+    "pk": 13, 
+    "model": "cashflow.entrycategory", 
+    "fields": {
+        "debit_credit": 1, 
+        "name": "Salary"
+    }
+},
+{
+    "pk": 1, 
+    "model": "cashflow.entry", 
+    "fields": {
+        "category": 1, 
+        "reference_number": "", 
+        "recurrance_type": null, 
+        "name": "Yummy", 
+        "recurring": false,
+        "amount": "72.31", 
+        "created_date": "2013-03-30T15:03:44.920", 
+        "incurred_date": "2013-03-30T15:02:12", 
+        "description": ""
+    }
+},
+{
+    "pk": 2, 
+    "model": "cashflow.entry", 
+    "fields": {
+        "category": 1, 
+        "reference_number": "", 
+        "recurrance_type": null, 
+        "name": "Yummy", 
+        "recurring": false,
+        "amount": "72.31", 
+        "created_date": "2013-03-30T15:42:25.670", 
+        "incurred_date": "2013-03-30T15:41:28", 
+        "description": ""
+    }
+},
+{
+    "pk": 3, 
+    "model": "cashflow.entry", 
+    "fields": {
+        "category": 3, 
+        "reference_number": "", 
+        "recurrance_type": null, 
+        "name": "iTunes", 
+        "recurring": false,
+        "amount": "9.99", 
+        "created_date": "2013-03-30T22:05:54.994", 
+        "incurred_date": "2013-03-30T22:05:40", 
+        "description": ""
+    }
+},
+{
+    "pk": 4, 
+    "model": "cashflow.entry", 
+    "fields": {
+        "category": 3, 
+        "reference_number": "", 
+        "recurrance_type": null, 
+        "name": "Freddy", 
+        "recurring": false,
+        "amount": "10.00", 
+        "created_date": "2013-03-30T22:22:25.005", 
+        "incurred_date": "2013-03-30T22:19:43", 
+        "description": ""
+    }
+}
+]

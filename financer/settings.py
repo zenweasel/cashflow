@@ -1,7 +1,9 @@
 # Django settings for financer project.
 import os
 PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
+PARENT_DIR = os.path.split(PROJECT_ROOT)[0]
 UPLOAD_ROOT = os.path.join(PROJECT_ROOT, 'uploads')
+
 
 
 DEBUG = True
@@ -109,6 +111,7 @@ WSGI_APPLICATION = 'financer.wsgi.application'
 
 TEMPLATE_DIRS = (
     os.path.join(PROJECT_ROOT, 'templates'),
+    os.path.join(PARENT_DIR, 'cashflow', 'templates'),
 )
 
 INSTALLED_APPS = (
@@ -123,7 +126,6 @@ INSTALLED_APPS = (
     'django_extensions',
     'debug_toolbar',
     'crispy_forms',
-    'smarter',
     'cashflow',
 )
 
@@ -167,4 +169,6 @@ DEBUG_TOOLBAR_PANELS = (
 DEBUG_TOOLBAR_CONFIG = {
     'INTERCEPT_REDIRECTS': False
 }
+if DEBUG:
+    INSTALLED_APPS += ("lettuce.django",)
 
