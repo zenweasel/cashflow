@@ -1,5 +1,5 @@
 lettuce
-Django==2.2.20
+Django==2.2.24
 django-crispy-forms==1.2.3
 django-debug-toolbar==0.9.4
 django-extensions==1.1.1
