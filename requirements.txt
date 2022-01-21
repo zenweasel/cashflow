@@ -3,7 +3,7 @@ Django==2.2.24
 django-crispy-forms==1.2.3
 django-debug-toolbar==0.9.4
 django-extensions==1.1.1
-ipython==0.13.1
+ipython==7.16.3
 psycopg2==2.4.6
 six==1.2.0
 wsgiref==0.1.2
